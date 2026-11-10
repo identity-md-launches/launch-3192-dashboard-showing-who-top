@@ -48,7 +48,7 @@ Category colors (`--cat-staking`, `--cat-wallet`, `--cat-liquidity`, `--cat-cont
   - Columns: rank, full address (an Etherscan link plus a copy icon button with an aria-label), label or kind tag (with the lock end date when locked), In wallet, Staked, Locked, Total, Share.
   - Header sort buttons carry `aria-sort`.
   - A status line gives the count, matches and copy confirmation.
-  - Empty search state: "Search all addresses". "Show N more" pages in steps of 100.
+  - Empty state: names the query (or "No addresses match these filters." when there is none) and offers "Reset filters", which clears the query, view and sort. "Show N more" pages in steps of 100.
 - **Supply breakdown** (`Breakdown.tsx`): a proportional bar (decorative, `aria-hidden`), a table of where the IMD sits, and a list of named contracts with full addresses.
 - **Method** (`About.tsx`): sources, how staked, locked and unvested amounts are derived, and the limits.
 - **States**: loading (`role=status`); error (`role=alert`) with **Try again**.

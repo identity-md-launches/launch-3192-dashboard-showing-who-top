@@ -49,15 +49,24 @@
 | 5 | Medium | `src/App.tsx` lede, `Controls.tsx` legend | walk: the first holder row started below the 844px fold at 390 after fix 4 | Shorter lede (14px on phones); "Show" legend visually hidden on phones | walk: first row on the first screen at 320/390 |
 | 6 | Medium | `scripts/snapshot.mjs` | Unlabeled contract holding 92k sIMD | Identified it as the ParameterizedVault CDP; its collateral is credited to 35 position owners. SitOnHands locks are credited to depositors. | Both sums reconcile exactly with on-chain balances |
 
+### Revision round (reviewer findings)
+| # | Severity | Where | Reproduced | Fix | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| 7 | High | `src/styles.css:162`, `src/styles.css:183` | Yes, from the reported steps: a full 42-character address in the empty-state message could not wrap | `.count` and the new `.empty p` rule set `min-width: 0` and `overflow-wrap: anywhere`; the address stays complete and selectable | Chromium, query `0x000…000`: scrollWidth 390 at 390, 320 at 320, 1440 at 1440; message ends inside its panel (350 < 374 at 390); 390 screenshot viewed |
+| 8 | Medium | `src/App.tsx:141`, `src/components/HolderTable.tsx:60` | Yes: the reset button kept `sort` as Locked | The button is now "Reset filters" and resets query, view and sort to Total. With no query, the message says "No addresses match these filters." | Chromium Locked → Contracts → Reset filters: "Showing 25 of 4,611 addresses", Total sort, 4 sort buttons; new unit test |
+| 9 | Medium | `src/data.ts:112`, `src/components/About.tsx:30` | Yes: an `eth_call` at block 26387260 returned `heldNft()` 2,259.70 IMD and `heldBonding()` 3,012.93 IMD, which together make up the distributor's balance | Bucket renamed "Unreleased protocol rewards"; Method text says the IMD is held for staking, bonding and node rewards. Addresses, balances and RPC logic unchanged | Rendered label checked in Chromium |
+
 ## 4. Verification commands (final source)
 - `npm run typecheck`: exit 0.
-- `npm test`: 2 files, 12 tests passed. They cover ranking, toggles, search ranks, kind filters, sort by locked, breakdown sums, CSV, bad file, and the UI flow (load, toggle, view, sort, search with empty state and clear, CSV download, error and retry).
+- `npm test`: 2 files, 13 tests passed (revision round; the new test covers Reset filters after an empty filter combination). They cover ranking, toggles, search ranks, kind filters, sort by locked, breakdown sums, CSV, bad file, and the UI flow (load, toggle, view, sort, search with empty state and clear, CSV download, error and retry).
 - `npm run build`: passed.
 - Playwright walk (`test/scratch/walk.mjs`, scratch only), with `dist/` served under `/preview/` in Chromium: **21/21 passed**.
   - Viewports 320×844, 390×844 and 1440×900.
   - Covers console and resource errors, scroll width, first-screen row, overlap, the Staked toggle, the All view, sort by Locked, search, Show more, the CSV download (4,602 rows), the skip link, and error and retry.
 - `node .imd/reads/skills/design-critic/scripts/taste.mjs --out test/scratch/taste` (with `IMD_PLAYWRIGHT` pointing at an out-of-repo Playwright): **16/16 passed**.
   - Probe figures: copy budget 44 words at 390; 5 type sizes.
+  - Rerun after the revision: 16/16 passed. Its browser was launched through an out-of-repo shim pointing at `/opt/ms-playwright/chromium_headless_shell-1246`, because the installed Playwright expects build 1248.
+  - Revision walk (`test/scratch/check.mjs`): empty search state, reset after Locked + Contracts and the protocol-rewards label at 320/390/1440, with no console errors. The full 21-check walk was not rerun this round.
   - Screenshots are in `test/scratch/taste/shots/` (scratch, not submitted).
 - The 390 and 1440 screenshots were viewed during the fixes above. After the last fix (5), the result was confirmed by the walk's measurements, not by a fresh look at the screenshot.
 

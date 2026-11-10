@@ -27,9 +27,9 @@ export default function About({ data }: { data: Snapshot }) {
       </p>
       <p>
         <strong>Unvested.</strong> No team or investor vesting contract holds IMD on Ethereum: every contract with 100 IMD
-        or more is named above. IMD not yet released sits in the POOL4 reward distributor and dripper ({imd(unreleased)}{' '}
-        IMD), which stream rewards to stakers and seats, shown as unreleased staking rewards. HamsterVault vests HAMSTER, not
-        IMD; the IMD it holds is counted as a contract balance.
+        or more is named above. POOL4 holds IMD for staking, bonding and node rewards that have not yet been released (
+        {imd(unreleased)} IMD in its reward distributor and dripper). These balances are shown as unreleased protocol
+        rewards. HamsterVault vests HAMSTER, not IMD; the IMD it holds is counted as a contract balance.
       </p>
       <h3>Limits</h3>
       <ul>

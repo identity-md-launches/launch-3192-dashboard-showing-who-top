@@ -36,10 +36,11 @@ A full run takes about 3,700 RPC calls.
 | Command | Result |
 | --- | --- |
 | `npm run typecheck` | exit 0 |
-| `npm test` | 2 files, 12 tests passed |
-| `npm run build` | passed; JS 236.7 kB (74 kB gzip), CSS 13.3 kB, data 0.4 MB |
+| `npm test` | 2 files, 13 tests passed |
+| `npm run build` | passed; JS 236.7 kB (74 kB gzip), CSS 13.4 kB, data 0.4 MB |
 | Playwright walk of `dist/` served under `/preview/` (Chromium, 320/390/1440) | 21/21 checks passed: no console errors or failed loads; no horizontal scroll; first holder row on the first screen; no overlapping cells; Staked toggle re-ranks; All view; sort by Locked; search; Show more; CSV download (4,602 rows); skip link first Tab stop; error state and Try again |
-| `node .imd/reads/skills/design-critic/scripts/taste.mjs` (taste@1) | 16/16 checks passed at 320/390/1440 |
+| Revision walk of `dist/` (Chromium, 320/390/1440) | empty search for a full address stays within the viewport (scrollWidth = width); Reset filters after Locked + Contracts restores 4,611 addresses sorted by Total; no console errors |
+| `node .imd/reads/skills/design-critic/scripts/taste.mjs` (taste@1) | 16/16 checks passed at 320/390/1440 (rerun after the revision) |
 
 Limitations:
 - WebKit could not launch on this machine (missing system libraries such as libgtk-4), so Safari behaviour is not verified.
@@ -52,5 +53,5 @@ Limitations:
 - **Liquidity is counted under the pool**, not under each liquidity provider.
 - **Unvested.** No team or investor vesting contract holds IMD on Ethereum; every contract with 100+ IMD is named in the page.
   - Time-locked IMD (SitOnHands) is credited to depositors.
-  - IMD waiting in the POOL4 RewardDistributor and RewardDripper is shown as unreleased staking rewards.
+  - IMD waiting in the POOL4 RewardDistributor and RewardDripper (staking, bonding and node rewards not yet released) is shown as unreleased protocol rewards.
 - **Snapshot, not live.** Refresh with the commands above.

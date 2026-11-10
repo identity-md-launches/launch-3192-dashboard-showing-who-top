@@ -138,7 +138,7 @@ export default function App() {
                 opts={opts}
                 supply={data.totalSupply}
                 onSort={(sort) => update({ sort })}
-                onClear={() => update({ query: '', view: 'all' })}
+                onClear={() => update({ query: '', view: 'all', sort: 'total' })}
               />
               {shown < result.rows.length && (
                 <button type="button" className="btn more" onClick={() => setShown((n) => n + PAGE * 4)}>

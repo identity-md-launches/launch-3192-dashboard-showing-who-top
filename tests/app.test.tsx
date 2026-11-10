@@ -31,8 +31,23 @@ describe('App', () => {
 
     await user.type(screen.getByLabelText('Find an address or contract'), 'zzz');
     expect(screen.getByText(/No address in this view matches/)).toBeTruthy();
-    await user.click(screen.getByRole('button', { name: 'Search all addresses' }));
+    await user.click(screen.getByRole('button', { name: 'Reset filters' }));
     expect((screen.getByLabelText('Find an address or contract') as HTMLInputElement).value).toBe('');
+    expect(await screen.findByText(/^Showing \d+ of \d+ addresses, largest first\.$/)).toBeTruthy();
+    expect(screen.getAllByRole('columnheader').find((h) => h.getAttribute('aria-sort'))?.textContent).toBe('Total');
+  });
+
+  it('resets a filter combination that matches nothing', async () => {
+    vi.stubGlobal('fetch', ok());
+    const user = userEvent.setup();
+    render(<App />);
+    await screen.findByText('Showing 4 of 4 addresses, largest first.');
+    await user.click(screen.getByRole('button', { name: /Locked/ }));
+    await user.click(screen.getByRole('radio', { name: 'Wallets' }));
+    expect(screen.getByText('No addresses match these filters.')).toBeTruthy();
+    await user.click(screen.getByRole('button', { name: 'Reset filters' }));
+    expect(await screen.findByText('Showing 7 of 7 addresses, largest first.')).toBeTruthy();
+    expect(screen.getAllByRole('columnheader').find((h) => h.getAttribute('aria-sort'))?.textContent).toBe('Total');
   });
 
   it('downloads the current view as CSV', async () => {

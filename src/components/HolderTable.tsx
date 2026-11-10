@@ -57,9 +57,9 @@ export default function HolderTable({ rows, matched, ranked, opts, supply, onSor
       </p>
       {rows.length === 0 ? (
         <div className="empty">
-          <p>No address in this view matches “{q}”.</p>
+          <p>{q ? `No address in this view matches “${q}”.` : 'No addresses match these filters.'}</p>
           <button type="button" className="btn" onClick={onClear}>
-            Search all addresses
+            Reset filters
           </button>
         </div>
       ) : (

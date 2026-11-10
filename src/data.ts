@@ -109,7 +109,7 @@ export const BUCKETS: { id: Kind; label: string }[] = [
   { id: 'liquidity', label: 'Uniswap liquidity' },
   { id: 'contract', label: 'Other contracts' },
   { id: 'lock', label: 'Time-locked in SitOnHands' },
-  { id: 'unreleased', label: 'Unreleased staking rewards' },
+  { id: 'unreleased', label: 'Unreleased protocol rewards' },
   { id: 'burn', label: 'Burn address' },
   { id: 'protocol', label: 'POOL4 burn executor' },
 ];
