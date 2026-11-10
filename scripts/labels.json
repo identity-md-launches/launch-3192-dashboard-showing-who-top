@@ -1,0 +1,17 @@
+{
+  "_sources": {
+    "imd-token": "https://imd.fun/token/ (Ethereum token address)",
+    "pool4-docs": "https://pool4.imd.fun/docs (StakedIMD, RewardDistributor, RewardDripper, BurnExecutor, CappedBurnHook)",
+    "uniswap": "Uniswap v4 PoolManager canonical Ethereum deployment",
+    "blockscout": "Verified contract names from https://eth.blockscout.com, fetched by scripts/snapshot.mjs"
+  },
+  "0x9efa934d9fad4ae28c998a40195646b965a97247": { "name": "StakedIMD (sIMD vault)", "kind": "staking", "source": "pool4-docs" },
+  "0x9046739e1535b40efbe6ab3f45d0024b690eca30": { "name": "POOL4 RewardDistributor", "kind": "unreleased", "source": "pool4-docs" },
+  "0xe6d3de6daeaf327fca42745f1998fcd989e00884": { "name": "POOL4 RewardDripper", "kind": "unreleased", "source": "pool4-docs" },
+  "0xe29386719c155b6847ad5a4e97c6674f10ffc750": { "name": "POOL4 BurnExecutor", "kind": "protocol", "source": "pool4-docs" },
+  "0xc6c965bd164c483e87d0b550671798e9a3602840": { "name": "POOL4 CappedBurnHook", "kind": "protocol", "source": "pool4-docs" },
+  "0x000000000004444c5dc75cb358380d2e3de08a90": { "name": "Uniswap v4 PoolManager", "kind": "liquidity", "source": "uniswap" },
+  "0x20bcc5c678b0beea9a042cd03e3abc36d00e734a": { "name": "SitOnHands time locks", "kind": "lock", "source": "blockscout" },
+  "0x0b69f8da8d8ce521d74ea69a7a3475b77302ef82": { "name": "ParameterizedVault (sIMD collateral)", "kind": "lock", "source": "blockscout" },
+  "0x000000000000000000000000000000000000dead": { "name": "Burn address", "kind": "burn", "source": "convention" }
+}

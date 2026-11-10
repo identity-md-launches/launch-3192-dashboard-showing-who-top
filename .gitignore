@@ -1,0 +1,10 @@
+# Dependencies and caches, at every nesting level
+node_modules/
+**/node_modules/
+.npm/
+.cache/
+*.tgz
+.vite/
+coverage/
+# Local scratch space (removed before submission)
+test/scratch/
